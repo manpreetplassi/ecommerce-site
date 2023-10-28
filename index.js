@@ -34,9 +34,7 @@ async function main() {
 server.use(cookieParser());
 server.use(cors());
 
-server.get('*', (req, res) =>
-  res.sendFile(path.resolve('build', 'index.html'))
-);
+
 
 server.use(
   cors({
@@ -137,8 +135,6 @@ server.post("/create-payment-intent", async (req, res) => {
 });
 
 
-
-
 server.use("/products", productsRouter.router);
 server.use("/filters", filtersRouter.router);
 server.use("/cart",isAuth(), cartRouter.router);
@@ -146,17 +142,13 @@ server.use("/orders",isAuth(), OrdersRouter.router);
 server.use("/user",isAuth(), UserRouter.router);
 server.use("/auth", AuthRouter.router);
 
-// server.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html', req.url));
-// });
+server.get('/', (req, res) =>
+  res.json({"success": true})
+);
+server.get('*', (req, res) =>
+  res.sendFile(path.resolve('build', 'index.html'))
+);
 
-// server.get(/^\/(?!api).*/ , (req, res) => {
-//   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-// });
-
-// server.listen(process.env.PORT, () => {
-//   console.log("server started");
-// });
 server.listen(3000, () => {
   console.log("server started");
 });
