@@ -149,13 +149,8 @@ server.use("/auth", AuthRouter.router);
 // server.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html', req.url));
 // });
-// let redirectionURL;
 
 // server.get(/^\/(?!api).*/ , (req, res) => {
-//   exports.redirectionURL = () => {
-//     return req.url;
-//   };
-//   // console.log(redirectionURL)
 //   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 // });
 

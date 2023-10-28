@@ -1,9 +1,7 @@
 const User = require("../model/User");
-const { redirectionURL } = require("../index.js")
 
 
 exports.fetchUserById = async (req, res) => {
-  console.log(redirectionURL);
   const {id} = req.user;
   try {
     const user = await User.findById( id, "name email role addresses id" )
