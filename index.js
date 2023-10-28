@@ -159,6 +159,9 @@ server.use("/auth", AuthRouter.router);
 //   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 // });
 
-server.listen(process.env.PORT, () => {
+// server.listen(process.env.PORT, () => {
+//   console.log("server started");
+// });
+server.listen(3000, () => {
   console.log("server started");
 });
