@@ -94,14 +94,13 @@ opts.jwtFromRequest = cookiesExtracter;
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 passport.use(
-  "jwt",
+  "_jwt",
   new JwtStrategy(opts,async function (jwt_payload, done) {
     try {
       const user = await User.findById({ _id: jwt_payload.id });
       if (user) {
         return done(null,sanitizeUser(user));
       }else{
-        console.log("User not found")
         return done(null, false, { msg: "User does Not exit" });
       }
     } catch (err) {

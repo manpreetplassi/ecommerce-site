@@ -3,7 +3,7 @@ const passport = require("passport");
 
 
 exports.isAuth = (req, res, done) => {
-    return passport.authenticate('jwt');
+    return passport.authenticate('_jwt');
 }
 
 exports.sanitizeUser = (user) => {
@@ -11,8 +11,8 @@ exports.sanitizeUser = (user) => {
 }
 exports.cookiesExtracter = function(req){
     let token = null;
-    if (req.cookies && req.cookies.jwt) {
-        token = req.cookies.jwt;
+    if (req.cookies && req.cookies._jwt) {
+        token = req.cookies._jwt;
     }
     
     // token = "";

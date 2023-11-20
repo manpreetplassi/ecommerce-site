@@ -34,7 +34,7 @@ exports.fetchAllOrders = async (req, res) => {
 };
 
 exports.fetchOrdersByUserId = async (req, res) => {
-  const {userId} = req.query;
+  const userId = req.user.id;
   try {
     const userOrders = await Order.find({"userId": userId}).populate('products.product');
     await res.status(200).json(userOrders);

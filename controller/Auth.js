@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
                 res.status(400).json(err);
             }else{
         const token = jwt.sign(sanitizeUser(user),process.env.JWT_SECRET_KEY,{ expiresIn: "1h" });
-        res.cookie('jwt', token , { expires: new Date(Date.now() + 3600000), httpOnly: true });
+        res.cookie('_jwt', token , { expires: new Date(Date.now() + 3600000), httpOnly: true });
                 res.json(sanitizeUser(user));
             }
         })
@@ -36,14 +36,29 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     try {
-            res.cookie('jwt', req.user, { expires: new Date(Date.now() + 3600000), httpOnly: true });
-        res.status(200).json(req.user);
+            res.cookie('_jwt', req.user, { expires: new Date(Date.now() + 3600000), httpOnly: true });
+            res.status(200).json(req.user);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
 }
-
-exports.checkUser = async(req, res) => {
-    res.json(req.user)
-}
+exports.checkAuth = async (req, res) => {
+    if (req.user) {
+      res.json(req.user);
+    } else {
+      res.sendStatus(401);
+    }
+  };
+  
+  exports.signOut = async (req, res) => {
+    res
+      .cookie('_jwt', '', {
+        expires: new Date(0),
+        httpOnly: true,
+        path: '/', // Set the path of the cookie
+      })
+      .sendStatus(200)
+    //   .json({status: "success"})
+  };
+  
