@@ -144,6 +144,9 @@ server.use("/auth", AuthRouter.router);
 server.get('/', (req, res) =>
   res.json({"success": true})
 );
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 server.get('*', (req, res) =>
   res.sendFile(path.resolve('build', 'index.html'))
 );
