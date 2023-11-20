@@ -136,7 +136,7 @@ server.post("/create-payment-intent", async (req, res) => {
 
 server.use("/products", productsRouter.router);
 server.use("/filters", filtersRouter.router);
-server.use("/cart",isAuth(), cartRouter.router);
+server.use("/cartData",isAuth(), cartRouter.router);
 server.use("/orders",isAuth(), OrdersRouter.router);
 server.use("/user",isAuth(), UserRouter.router);
 server.use("/auth", AuthRouter.router);
