@@ -16,6 +16,22 @@
       "source": "/orderSuccess/:orderId",
       "destination": "index.js"
     }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "https://ecommerce-site-qftm76081-manpreet-singhs-projects-8a57e9e6.vercel.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "index"
+        }
+      ]
+    }
   ]
 }
-
